@@ -21,7 +21,6 @@ def redirect_to_change_password(sender, request, user, **kwargs):
         messages.error(request, f"Password must be changed.")
         # set flag for middleware to pick up
         request.redirect_to_password_change = True
-        print('set')
     except ForcePasswordChange.DoesNotExist:
         pass
 
@@ -29,7 +28,7 @@ def redirect_to_change_password(sender, request, user, **kwargs):
 def remove_force_password_record(sender, instance, **kwargs):
     # user changing password so remove force change record
     # contrib/auth/base_user.py sets _password in set_password()
-    if instance._password is None:
+    if instance._password is None or instance.pk is None:
         return
     ForcePasswordChange.objects.filter(user=instance).delete()
 

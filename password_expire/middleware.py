@@ -39,7 +39,7 @@ class PasswordExpireMiddleware:
         """
         Only warn on pages that are GET requests and not ajax. Also ignore logouts.
         """
-        if request.method == "GET" and not request.is_ajax():
+        if request.method == "GET" and request.headers.get("x-requested-with") != "XMLHttpRequest":
             match = resolve(request.path)
             if match and match.url_name == 'logout':
                 return False

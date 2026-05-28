@@ -7,7 +7,7 @@ This app provides configurable expiration of passwords.
  * Prevents user from logging in after expiration
 
 ## Requirements
-This Django app requires Python >= 3.6 and has been tested with Django 2.2, 3.1, and 3.2.
+This Django app requires Python >= 3.8 and has been tested with Django 2.2, 3.1, 3.2, 4.2, and 5.x.
 
 ## Installation
  1. `pip install django-password-expire`.
